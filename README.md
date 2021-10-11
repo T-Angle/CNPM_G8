@@ -15,6 +15,9 @@ git clone https://github.com/T-Angle/CNPM_G8.git
 - Server: MS Azure
 - DB: MongoDB
 
+## Trello
+https://trello.com/b/bM38YPAM/d%E1%BB%B1-%C3%A1n-qu%E1%BA%A3n-l%C3%BD-th%C6%B0-vi%E1%BB%87n
+
 ## Contributors
 
 - Nguyễn Đức Khải (Lead)
