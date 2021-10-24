@@ -1,3 +1,4 @@
 Link usecase diagram: https://drive.google.com/file/d/1FasUc3g02WSzbjAmRpGXYLovRcUYtmhX/view?usp=sharing
 
 
+Link sequence diagram: https://app.diagrams.net/#G1nh6e-UAzeHKR8QBhWIT3d40RWR3EFWCI
