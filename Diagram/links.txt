@@ -3,4 +3,4 @@ https://drive.google.com/file/d/1FasUc3g02WSzbjAmRpGXYLovRcUYtmhX/view?usp=shari
 
 
 Link sequence diagram: 
-https://app.diagrams.net/#G1nh6e-UAzeHKR8QBhWIT3d40RWR3EFWCI
+https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1nh6e-UAzeHKR8QBhWIT3d40RWR3EFWCI
