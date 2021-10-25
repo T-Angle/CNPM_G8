@@ -1,1 +1,8 @@
-https://drive.google.com/file/d/1LierhQF_pCMp_2oYxLssdjDwpdFD4JA0/view?usp=sharing
+Link usecase diagram: 
+https://drive.google.com/file/d/1FasUc3g02WSzbjAmRpGXYLovRcUYtmhX/view?usp=sharing
+
+
+Link sequence diagram: 
+https://drive.google.com/file/d/1nh6e-UAzeHKR8QBhWIT3d40RWR3EFWCI/view?usp=sharing
+
+p/s: Chi share cho acc UIT
