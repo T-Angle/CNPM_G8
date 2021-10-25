@@ -1,0 +1,211 @@
+/* [global] font-size 20px*/
+
+:root {
+	--a-text-color: #4b83c6;
+}
+
+.Access {
+	display: flex;
+	justify-content: space-between;
+}
+
+/* GLOBAL CSS */
+.vert-divider {
+	/* height: 100%;
+	width: 2px;
+	background-color: #4b82c6e5; */
+	margin: 0 1em;
+}
+
+/* -------------LEFT_BACKGROUND------------ */
+
+.left-background {
+	width: 45%;
+	height: 100vh;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.507);
+}
+
+/* -------------LEFT_BACKGROUND ENDS------------ */
+
+/* -------------RIGHT_ACCESS_WRAP------------ */
+
+.right-access-wrap {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	padding: 0 8%;
+}
+
+.right-access-wrap h3 {
+	font-size: 24px;
+}
+
+.right-access-wrap p {
+	font-size: 18px;
+}
+
+.group-header {
+	width: 100%;
+	flex-basis: 25%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login-register {
+	width: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.login-register > div {
+	display: flex;
+	flex-direction: column;
+}
+
+.access-panel {
+	display: flex;
+	flex-direction: column;
+}
+
+.access-panel .access-input {
+	padding: 1em 1.5em 1em 1em;
+	border: none;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	outline: none;
+	font-size: 15px;
+}
+
+.access-panel .access-input:focus {
+	border: 1px solid #007bda;
+}
+
+.access-panel .access-input:not(:first-child) {
+	margin-top: 1.25em;
+}
+
+/* allow hide-show password */
+.password-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border: none;
+	background-color: #f1f1f1;
+	border-radius: 5px;
+	outline: none;
+	font-size: 15px;
+	padding: 0 1em;
+	margin-top: 1.25em;
+}
+
+.password-box > input {
+	background-color: inherit;
+	border: none;
+	outline: none;
+	padding: 1em 1em 1em 0;
+	width: 100%;
+}
+
+.password-box > i {
+	/* opacity: 0 !important; */
+	font-size: 15px;
+}
+
+.password-box input[type="password"]:hover > .password-box i {
+	opacity: 1;
+}
+
+#register-button {
+	margin-top: 2em;
+}
+/*---------------LOGIN & REGISTER ENDS------------ */
+
+.forgot-show-passwd {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0.5em 0 2em 0;
+}
+
+.forgot-show-passwd a,
+.forgot-show-passwd span {
+	font-size: 14px;
+}
+
+.show-passwd {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.show-passwd label {
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.show-passwd label::selection {
+	background-color: transparent;
+}
+
+.button {
+	padding: 0.7em 0;
+	width: 100px;
+	border-radius: 5px;
+	font-size: 15px;
+	cursor: pointer;
+	background-color: #0092ff;
+	color: #fff;
+	outline: none;
+}
+
+.term {
+	width: 100%;
+	flex-basis: 10%;
+	display: flex;
+}
+
+.term a {
+	font-weight: 600;
+}
+
+/* -------------RIGHT_ACCESS_WRAP ENDS------------ */
+
+/* MODIFY TAB MENU */
+.ui.secondary.pointing.menu {
+	margin-bottom: 2em;
+}
+
+.ui.secondary.menu .item {
+	text-align: left !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	margin-right: 2em !important;
+}
+
+.ui.segment {
+	padding: 0 !important;
+}
+
+.borderless {
+	border: none !important;
+}
+
+.no-shadow {
+	box-shadow: none !important;
+}
