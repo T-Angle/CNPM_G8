@@ -17,7 +17,7 @@ git clone https://github.com/T-Angle/CNPM_G8.git
 - FE: ReactJS
 - BE: Nodejs, ExpressJS
 - Server: MS Azure
-- DB: MongoDB
+- DB: MySQL
 
 ## Contributors
 
