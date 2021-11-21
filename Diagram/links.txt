@@ -1,8 +1,12 @@
-Link usecase diagram: 
+Link usecase diagram: [Chỉ share cho account UIT]
 https://drive.google.com/file/d/1FasUc3g02WSzbjAmRpGXYLovRcUYtmhX/view?usp=sharing
 
 
-Link sequence diagram: 
+Link sequence diagram: [Chỉ share cho account UIT]
 https://drive.google.com/file/d/1nh6e-UAzeHKR8QBhWIT3d40RWR3EFWCI/view?usp=sharing
 
-p/s: Chi share cho acc UIT
+Link DB diagram: [share public]
+https://drive.google.com/file/d/1C1LMKqGPZ-GMGDMV46bjezcNwuwBu3Sl/view
+
+Link Class diagram: [public]
+https://drive.google.com/file/d/1x1S_7ul_WVnzAtHdtl39uTkUuZPbXHF1/view?usp=sharing
