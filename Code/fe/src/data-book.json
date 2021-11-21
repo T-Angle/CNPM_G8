@@ -1,5 +1,46 @@
 {
     "books": [
-        {}
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/51dU7JA2hbL._SX379_BO1,204,203,200_.jpg",
+            "title": "Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services",
+            "publisher": "Oreilly",
+            "evaluation": 2,
+            "price": "5000"
+        },
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/71DjgMQb3bL.jpg",
+            "title": "You Don't Know JS Yet: Scope & Closures - 1st Edition",
+            "publisher": "Kyle Simpson",
+            "evaluation": 5,
+            "price": "10000"
+        },
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/81B4f4soNAL.jpg",
+            "title": "The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations",
+            "publisher": "Gene Kim & Patrick Debois",
+            "evaluation": 4,
+            "price": "10000"
+        },
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41Rm4BuXTxL.jpg",
+            "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+            "publisher": "Pearson",
+            "evaluation": 5,
+            "price": "12000"
+        },
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41TPrNDI50L._SX387_BO1,204,203,200_.jpg",
+            "title": "Clean Architecture: A Craftsman's Guide to Software Structure and Design",
+            "publisher": "Pearson",
+            "evaluation": 5,
+            "price": "15000"
+        },
+        {
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/51FUYfErOXL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
+            "title": "Code Complete: A Practical Handbook of Software Construction",
+            "publisher": "Microsoft Press",
+            "evaluation": 4,
+            "price": "10000"
+        }
     ]
 }

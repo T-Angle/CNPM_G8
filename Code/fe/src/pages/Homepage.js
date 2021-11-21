@@ -8,6 +8,9 @@ import { Pagination } from "@mui/material";
 //import css
 import "../styles/Homepage.style.css";
 
+//mock db
+import { books } from "../data-book.json";
+
 function Homepage() {
 	const toggleUserManage = () => {
 		let userManager = document.querySelector(".user-manager");
@@ -113,38 +116,9 @@ function Homepage() {
 					</div>
 
 					<div className="books">
-						<BookItem
-							title="Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/51dU7JA2hbL._SX379_BO1,204,203,200_.jpg"
-						/>
-						<BookItem
-							title="You Don't Know JS Yet: Scope & Closures - 1st Edition"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/71DjgMQb3bL.jpg"
-						/>
-						<BookItem
-							title="The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/81B4f4soNAL.jpg"
-						/>
-						<BookItem
-							title="Clean Architecture: A Craftsman's Guide to Software Structure and Design"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/41TPrNDI50L._SX387_BO1,204,203,200_.jpg"
-						/>
-						<BookItem
-							title="Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/51dU7JA2hbL._SX379_BO1,204,203,200_.jpg"
-						/>
-						<BookItem
-							title="You Don't Know JS Yet: Scope & Closures - 1st Edition"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/71DjgMQb3bL.jpg"
-						/>
-						<BookItem
-							title="The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/81B4f4soNAL.jpg"
-						/>
-						<BookItem
-							title="Clean Architecture: A Craftsman's Guide to Software Structure and Design"
-							thumbnail="https://images-na.ssl-images-amazon.com/images/I/41TPrNDI50L._SX387_BO1,204,203,200_.jpg"
-						/>
+						{books.map((book, index) => {
+							return <BookItem bookData={book} key={index} />;
+						})}
 					</div>
 
 					<Pagination
