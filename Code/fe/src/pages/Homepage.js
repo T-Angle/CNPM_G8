@@ -41,7 +41,7 @@ function Homepage() {
 
 								<div className="manager-wrapper">
 									<Icon name="id card" />
-									<a>My Card</a>
+									<a href="/dashboard/card">My Card</a>
 								</div>
 							</li>
 							<li>

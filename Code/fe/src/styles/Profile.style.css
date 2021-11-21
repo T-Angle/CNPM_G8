@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
+.Profile {
+	display: flex;
+	justify-content: center;
+	padding: 3em;
+	font-family: "Poppins", sans-serif;
+	height: 100vh;
+	overflow: auto;
+}
+
+.profile-container {
+	padding: 3em 2em;
+	width: 100%;
+	height: fit-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-shadow: -1px 2px 10px 5px rgba(135, 135, 135, 0.224);
+	border-radius: 7.5px;
+	max-width: 800px;
+}
+
+.Profile .profile-avatar {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	width: 100%;
+	margin-bottom: 2em;
+}
+
+.Profile .profile-avatar > img {
+	width: 175px;
+	height: 175px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.Profile .add-profile-avatar {
+	position: absolute;
+	top: 70%;
+	right: 40%;
+	width: 50px;
+	height: 50px;
+	background-color: #f9fafb;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.Profile .add-profile-avatar:hover {
+	box-shadow: 2px 2px 5px rgb(221, 221, 221);
+}
+
+.Profile .profile-row {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid rgb(221, 221, 221);
+	padding-bottom: 8px;
+	margin: 1em 0;
+}
+
+.Profile .profile-row > p,
+.profile-control > p {
+	margin: 0;
+}
+.Profile .profile-row .row-head {
+	flex-basis: 50%;
+	font-weight: 600;
+}
+.Profile .profile-row .row-tail {
+	flex-basis: 50%;
+	text-align: left;
+}
+
+.Profile .profile-control {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 8px;
+	margin: 1em 0;
+}
+
+.Profile .profile-control > p {
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.Profile .profile-control .control-update {
+	border: none;
+	padding: 10px 13px;
+	background-color: transparent;
+	border: 1px solid rgb(221, 221, 221);
+	font-weight: 500;
+	color: #6b7280;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}

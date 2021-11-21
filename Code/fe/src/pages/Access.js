@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Tab, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import Logo from "../components/Logo";
 
 //import css
 import "../styles/Access.style.css";
