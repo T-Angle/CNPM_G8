@@ -10,6 +10,7 @@ import "../styles/Homepage.style.css";
 
 //mock db
 import { books } from "../data-book.json";
+import { Link } from "react-router-dom";
 
 function Homepage() {
 	const toggleUserManage = () => {
@@ -28,7 +29,9 @@ function Homepage() {
 				</div>
 
 				<div className="users">
-					<Icon className="shopping cart" />
+					<Link to="/cart" style={{color: "black"}}>
+						<Icon className="shopping cart" />
+					</Link>
 					<div className="personalize">
 						<img
 							onClick={toggleUserManage}
