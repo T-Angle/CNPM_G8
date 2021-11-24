@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import CartList from '../components/Cart/CartList';
 import { books } from "../data-book.json";
 
+import "../styles/Cart.style.scss";
+
 
 function Cart(props) {
 
@@ -74,9 +76,9 @@ function Cart(props) {
           </div>
         </div>
 
-        <CartList data={books} />
+        
       </div>
-
+      <CartList data={books} />
     </div>
   );
 }
