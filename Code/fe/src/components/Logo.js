@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const styles = {
 	// logo: {
@@ -24,10 +25,12 @@ const styles = {
 
 function Logo() {
 	return (
-		<div className="logo" style={styles.logo}>
-			<i aria-hidden="true" className="book big icon" style={styles.icon}></i>
-			<span style={styles.span}>E-book</span>
-		</div>
+		<Link to="/homepage" style={{color: "black"}}>
+			<div className="logo" style={styles.logo}>
+				<i aria-hidden="true" className="book big icon" style={styles.icon}></i>
+				<span style={styles.span}>E-book</span>
+			</div>
+		</Link>
 	);
 }
 

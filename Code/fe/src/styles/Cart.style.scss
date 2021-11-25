@@ -1,0 +1,86 @@
+.cart {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fafafa;
+
+    &_table {
+        border-collapse: collapse;
+        width: 100%;
+        td {
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+        th {
+            padding: 24px 10px;
+            font-size: 1.5rem;
+        }
+
+        thead {
+            background-color: #e5e5e5;
+        }
+
+        &-product {
+            display: flex;
+            align-items: center;
+            img {
+                margin: 0 18px;
+            }
+        }
+
+        &-tools {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    &_pagination {
+        margin: 30px;
+        display: flex;
+        justify-content: center;
+
+        button {
+            font-size: 16px;
+        }
+    }
+
+    &_tools {
+        display: flex;
+        float: right;
+        // width: 100%;
+        button {
+            margin: 10px;
+        }
+    }
+}
+
+.btn {
+    &-small {
+        border-radius: 1.4rem;
+        padding: 6px 15px;
+        cursor: pointer;
+    }
+    &-large {
+        border-radius: 1.8rem;
+        padding: 10px 25px;
+        cursor: pointer;
+    }
+    &-danger {
+        background-color: crimson;
+        color: white;
+        &:hover {
+            background-color: tomato;
+        }
+    }
+    &-normal {
+        background-color: #ddd;
+        color: black;
+        &:hover {
+            background-color: blue;
+            color: white;
+        }
+    }
+    &-success {
+        background-color: green;
+        color: white;
+    }
+}
