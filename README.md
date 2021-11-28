@@ -12,6 +12,10 @@ git clone https://github.com/T-Angle/CNPM_G8.git
 
 - https://trello.com/b/bM38YPAM/d%E1%BB%B1-%C3%A1n-qu%E1%BA%A3n-l%C3%BD-th%C6%B0-vi%E1%BB%87n
 
+## UI/UX wireframe:
+
+- https://www.figma.com/file/1n9dZX7AG1Wx0fm7syp2GC/Untitled?node-id=0%3A1
+
 ## Techstack
 
 - FE: ReactJS
