@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Tab, Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
+import axios from "axios";
 
 //import css
 import "../styles/Access.style.css";
+
+//api
+import { BASE_URL } from "../api/api-url";
 
 const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 	return [
@@ -38,11 +43,13 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 							</div>
 							<a href="#">Forgot password?</a>
 						</div>
-						<Link to="/homepage">
-							<button id="login" className="button borderless">
-								Login
-							</button>
-						</Link>
+						<button
+							id="login"
+							className="button borderless"
+							onClick={events.Login}
+						>
+							Login
+						</button>
 					</div>
 				</Tab.Pane>
 			),
@@ -53,9 +60,9 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 				<Tab.Pane attached={false} className="borderless no-shadow">
 					<div className="access-panel register">
 						<input
-							id="email"
+							id="username"
 							className="access-input"
-							type="email"
+							type="text"
 							placeholder="Username"
 							required
 						></input>
@@ -94,7 +101,11 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 								onClick={events.toggleConfirmPassword}
 							/>
 						</div>
-						<button id="register-button" className="button borderless">
+						<button
+							id="register-button"
+							className="button borderless"
+							onClick={events.Register}
+						>
 							Register
 						</button>
 					</div>
@@ -104,24 +115,9 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 	];
 };
 
-function Access() {
-	//config state
-	let [showPwd, setShowPwd] = useState(false);
-	let [showConfirmPwd, setShowConfirmPwd] = useState(false);
-	let [showLoginPwd, setShowLoginPwd] = useState(false);
-
-	const togglePassword = (e) => {
-		setShowPwd(!showPwd);
-	};
-
-	const toggleConfirmPassword = (e) => {
-		setShowConfirmPwd(!showConfirmPwd);
-	};
-
-	const toggleLoginPassword = (e) => {
-		setShowLoginPwd(!showLoginPwd);
-	};
-
+const AccessComponent = ({
+	actions: { showPwd, showConfirmPwd, showLoginPwd, events },
+}) => {
 	return (
 		<div className="Access">
 			<div
@@ -141,11 +137,7 @@ function Access() {
 				<div className="login-register">
 					<Tab
 						menu={{ secondary: true, pointing: true }}
-						panes={createPanes(showPwd, showConfirmPwd, showLoginPwd, {
-							togglePassword,
-							toggleConfirmPassword,
-							toggleLoginPassword,
-						})}
+						panes={createPanes(showPwd, showConfirmPwd, showLoginPwd, events)}
 					/>
 				</div>
 
@@ -156,6 +148,96 @@ function Access() {
 				</div>
 			</div>
 		</div>
+	);
+};
+
+function Access() {
+	//config state
+	let [showPwd, setShowPwd] = useState(false);
+	let [showConfirmPwd, setShowConfirmPwd] = useState(false);
+	let [showLoginPwd, setShowLoginPwd] = useState(false);
+
+	let [isLogin, setIsLogin] = useState(false);
+
+	const togglePassword = (e) => {
+		setShowPwd(!showPwd);
+	};
+
+	const toggleConfirmPassword = (e) => {
+		setShowConfirmPwd(!showConfirmPwd);
+	};
+
+	const toggleLoginPassword = (e) => {
+		setShowLoginPwd(!showLoginPwd);
+	};
+
+	const Login = (e) => {
+		const email = document.getElementById("email").value;
+		const password = document.getElementById("password").value;
+
+		axios
+			.post(`${BASE_URL}/auth/login`, {
+				email,
+				password,
+			})
+			.then(function ({ data }) {
+				if (data.statusCode === 200) {
+					sessionStorage.setItem("token", data.data.token);
+					setIsLogin(true);
+				} else {
+					alert(data.msg);
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	};
+
+	const Register = (e) => {
+		const confirmPassword = document.getElementById("confirm-password").value;
+		const email = document.getElementById("email").value;
+		const password = document.getElementById("password").value;
+		const username = document.getElementById("username").value;
+
+		if (password !== confirmPassword) {
+			alert("Password is not match");
+		} else {
+			axios
+				.post(`${BASE_URL}/auth/register`, {
+					username,
+					email,
+					password,
+				})
+				.then(function ({ data }) {
+					if (data.statusCode === 200) {
+						alert("Register succesfully! You can now login");
+					} else {
+						alert(data.msg);
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
+	};
+
+	return isLogin ? (
+		<Redirect to="/homepage" />
+	) : (
+		<AccessComponent
+			actions={{
+				showPwd,
+				showConfirmPwd,
+				showLoginPwd,
+				events: {
+					togglePassword,
+					toggleConfirmPassword,
+					toggleLoginPassword,
+					Login,
+					Register,
+				},
+			}}
+		/>
 	);
 }
 

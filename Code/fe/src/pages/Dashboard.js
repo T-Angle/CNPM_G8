@@ -53,7 +53,11 @@ function Dashboard(props) {
 			<div className="Dashboard">
 				<ProSidebar image="https://azouaoui-med.github.io/react-pro-sidebar/static/media/bg2.de0153c5.jpg">
 					<SidebarHeader>
-						<div className="db-logo">Ebook</div>
+						<div className="db-logo">
+							<a style={{ color: "white" }} href="/homepage">
+								Ebook
+							</a>
+						</div>
 					</SidebarHeader>
 					<SidebarContent>
 						<Menu iconShape="circle">

@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { FaRegSadTear, FaPlus } from "react-icons/fa";
 import { Button } from "semantic-ui-react";
+import Form from "../components/Form";
+import Popup from "reactjs-popup";
+import moment from "moment";
+
+import TableExamplePagination from "../components/CardActivityTable";
+
+import axios from "axios";
+import { BASE_URL } from "../api/api-url";
 
 //import css
 import "../styles/Card.style.css";
-
-//import mock db
-import { card_users } from "../db.json";
+import "reactjs-popup/dist/index.css";
 
 const HasNoCard = ({ events }) => {
 	return (
@@ -18,25 +24,39 @@ const HasNoCard = ({ events }) => {
 					You haven't create card yet! Please click button below to create card
 				</b>
 			</i>
-			<button className="create-card" onClick={events.createCard}>
-				<FaPlus className="plus-icon" />
-				Create card
-			</button>
+			<Popup
+				modal
+				trigger={
+					<button className="create-card">
+						<FaPlus className="plus-icon" />
+						Create card
+					</button>
+				}
+			>
+				{(close) => (
+					<div className="modal">
+						<button className="close" onClick={close}>
+							&times;
+						</button>
+
+						<Form events={events.createCard} close={close}></Form>
+					</div>
+				)}
+			</Popup>
 		</div>
 	);
 };
 
 const HasCard = ({ data }) => {
-	const { user_avatar, user_name, school, card_id, dob, expired } = data;
+	const { thumbnail, cardId, credit, dob, expired, name, school } = data;
+
+	//state config
+	const [showActivity, setShowActivity] = useState(true);
 
 	return (
 		<div className="has-card-boundary">
 			<div className="card-boundary-inner">
-				<div className="interactive-btns">
-					<Button color="red">Update</Button>
-					<Button color="green">Extend</Button>
-					<Button color="orange">Activities</Button>
-				</div>
+				<h2>Balance: {credit}</h2>
 				<div className="card-ui">
 					<div
 						className="top-background"
@@ -64,23 +84,23 @@ const HasCard = ({ data }) => {
 					>
 						<div className="content-name-qr">
 							<div className="name">
-								<span>{user_name}</span>
+								<span>{name}</span>
 								<span>{school}</span>
 							</div>
 						</div>
 
 						<div className="more-info">
 							<div className="id-info">
-								<p className="id">{card_id}</p>
+								<p className="id">{cardId}</p>
 
 								<div className="info">
 									<div className="dob info-block">
 										<span>D.O.B:</span>
-										<span>{dob}</span>
+										<span>{moment(dob).format("MM/DD/YYYY")}</span>
 									</div>
 									<div className="expire info-block">
 										<span>Expired:</span>
-										<span>{expired}</span>
+										<span>{moment(expired).format("DD/MM/YYYY")}</span>
 									</div>
 								</div>
 							</div>
@@ -91,8 +111,22 @@ const HasCard = ({ data }) => {
 						</div>
 					</div>
 
-					<img className="user-thumbnail" src={user_avatar}></img>
+					<img
+						className="user-thumbnail"
+						src={
+							thumbnail
+								? thumbnail
+								: process.env.PUBLIC_URL + `/assets/user_default.png`
+						}
+					></img>
 				</div>
+				<div className="interactive-btns">
+					<Button color="red">Update</Button>
+					<Button color="green">Extend</Button>
+				</div>
+			</div>
+			<div className="card-activity">
+				<TableExamplePagination />
 			</div>
 		</div>
 	);
@@ -101,16 +135,46 @@ const HasCard = ({ data }) => {
 function Card() {
 	//state config
 	let [hasCard, setHasCard] = useState(false);
+	let [cardData, setCardData] = useState({});
 
 	//events
-	const createCard = () => {
-		setHasCard(!hasCard);
+	const createCard = async (childData) => {
+		const card = await axios({
+			method: "post",
+			url: `${BASE_URL}/card/create-card`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+			data: childData,
+		});
+
+		if (card.data.statusCode === 200) {
+			setHasCard(!hasCard);
+			setCardData(card.data.data);
+		} else {
+			alert(card.data.msg);
+		}
 	};
+
+	useEffect(async () => {
+		let response = await axios({
+			method: "get",
+			url: `${BASE_URL}/card/validate-card`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+		});
+
+		if (response.data.statusCode === 200) {
+			setHasCard(!hasCard);
+			setCardData(response.data.data);
+		}
+	}, []);
 
 	return (
 		<div className="Card">
 			{hasCard === true ? (
-				<HasCard data={card_users[0]} />
+				<HasCard data={cardData} />
 			) : (
 				<HasNoCard events={{ createCard: createCard }} />
 			)}
