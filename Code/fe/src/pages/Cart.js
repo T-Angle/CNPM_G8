@@ -141,7 +141,7 @@ function Cart(props) {
 
 								<div className="manager-wrapper">
 									<Icon name="log out" />
-									<a>Sign out</a>
+									<a href="/">Sign out</a>
 								</div>
 							</li>
 						</ul>

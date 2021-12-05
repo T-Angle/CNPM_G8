@@ -78,7 +78,7 @@ function Dashboard(props) {
 					<SidebarFooter>
 						<div class="sidebar-btn-wrapper" style={{ padding: "20px 24px" }}>
 							<a
-								href="https://github.com/azouaoui-med/react-pro-sidebar"
+								href="https://github.com/T-Angle/CNPM_G8"
 								target="_blank"
 								className="sidebar-btn"
 								rel="noopener noreferrer"

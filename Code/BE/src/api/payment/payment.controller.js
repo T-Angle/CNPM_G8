@@ -33,7 +33,7 @@ module.exports = {
 
 	paymentHistory: async (req, res, next) => {
 		try {
-			const DTO = await paymentService.paymentHistory(req.uid._id);
+			const DTO = await paymentService.paymentHistory(req.uid._id, next);
 
 			DTO.statusCode === 200
 				? httpResponse.sendSuccessful(res, DTO.returnValue, DTO.statusCode)

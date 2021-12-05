@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tab, Icon } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 		{
 			menuItem: "Login",
 			render: () => (
-				<Tab.Pane attached={false} className="borderless no-shadow">
+				<Tab.Pane attached={true} className="borderless no-shadow">
 					<div className="access-panel">
 						<input
 							id="email"
@@ -57,7 +57,7 @@ const createPanes = (showPwd, showConfirmPwd, showLoginPwd, events) => {
 		{
 			menuItem: "Register",
 			render: () => (
-				<Tab.Pane attached={false} className="borderless no-shadow">
+				<Tab.Pane attached={true} className="borderless no-shadow">
 					<div className="access-panel register">
 						<input
 							id="username"

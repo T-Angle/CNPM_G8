@@ -64,7 +64,7 @@ function FormExampleFieldControlId({ events, close }) {
 					}
 
 					events({
-						dob: moment(dob).format("DD/MM/YYYY"),
+						dob: new Date(dob),
 						name: fullname,
 						school,
 					});

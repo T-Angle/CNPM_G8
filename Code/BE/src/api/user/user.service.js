@@ -7,7 +7,6 @@ module.exports = {
 	getUser: async (uid, next) => {
 		try {
 			const user = await User.findById(uid);
-			console.log(user);
 
 			if (user) {
 				return serviceReturn(user, httpStatus.OK);

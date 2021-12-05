@@ -13,7 +13,7 @@ const TableExamplePagination = ({ paymentHistory }) => {
 
 	useEffect(() => {
 		paginate(null, currentPage);
-	});
+	}, [paginatedHistory]);
 
 	//paginate function
 	let paginate = async (event, page) => {

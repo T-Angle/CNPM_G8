@@ -33,7 +33,16 @@ module.exports = {
 
 	createCard: async (user_info, uid, next) => {
 		try {
-			let user = await User.updateOne(user_info);
+			let user = await User.updateOne(
+				{ _id: uid },
+				{
+					$set: {
+						dob: user_info.dob,
+						name: user_info.name,
+						school: user_info.school,
+					},
+				}
+			);
 
 			if (user) {
 				//create card

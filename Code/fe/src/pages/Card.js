@@ -148,7 +148,7 @@ const HasCard = ({ data, events, paymentHistory }) => {
 								<div className="info">
 									<div className="dob info-block">
 										<span>D.O.B:</span>
-										<span>{moment(dob).format("MM/DD/YYYY")}</span>
+										<span>{moment(dob).format("DD/MM/YYYY")}</span>
 									</div>
 									<div className="expire info-block">
 										<span>Expired:</span>
@@ -312,7 +312,6 @@ function Card() {
 				token: sessionStorage.getItem("token"),
 			},
 		});
-
 		let history = await getPaymentHistory();
 
 		if (history.data.statusCode === 200) {

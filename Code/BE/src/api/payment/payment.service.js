@@ -104,11 +104,15 @@ module.exports = {
 				userId: uid,
 			});
 
-			const payment = await Payment.find({
-				cardId: card._id,
-			});
+			if (card) {
+				const payment = await Payment.find({
+					cardId: card._id,
+				});
 
-			return serviceReturn(payment, httpStatus.OK);
+				return serviceReturn(payment, httpStatus.OK);
+			}
+
+			return serviceReturn("Does not have history", httpStatus.NOT_FOUND);
 		} catch (error) {
 			next(error);
 		}
