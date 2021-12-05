@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { FaRegSadTear, FaPlus } from "react-icons/fa";
-import { Button } from "semantic-ui-react";
+import { Input, Button, Icon, Label } from "semantic-ui-react";
 import Form from "../components/Form";
 import Popup from "reactjs-popup";
 import moment from "moment";
@@ -14,6 +14,61 @@ import { BASE_URL } from "../api/api-url";
 //import css
 import "../styles/Card.style.css";
 import "reactjs-popup/dist/index.css";
+
+function Deposit({ events, close }) {
+	//state config
+	let [amount, setAmount] = useState(0);
+
+	const changeAmount = (e) => {
+		setAmount(e.target.innerHTML);
+	};
+
+	const onEnterAmount = (e) => {
+		setAmount(e.target.value);
+	};
+
+	return (
+		<>
+			<Input
+				icon="money"
+				iconPosition="left"
+				placeholder="Enter your amount..."
+				style={{ marginBottom: "1em", fontSize: "16px" }}
+				value={amount}
+				onChange={onEnterAmount}
+				type="number"
+			/>
+
+			{/* goi y khoan deposit */}
+			<div className="de-xuat" style={{ display: "flex", marginBottom: "1em" }}>
+				<Label.Group color="black">
+					<Label as="a" onClick={changeAmount}>
+						50000
+					</Label>
+					<Label as="a" onClick={changeAmount}>
+						100000
+					</Label>
+					<Label as="a" onClick={changeAmount}>
+						200000
+					</Label>
+					<Label as="a" onClick={changeAmount}>
+						500000
+					</Label>
+				</Label.Group>
+			</div>
+
+			<Button
+				primary
+				onClick={() => {
+					events(parseInt(amount));
+					close();
+				}}
+			>
+				Deposit
+			</Button>
+		</>
+	);
+}
 
 const HasNoCard = ({ events }) => {
 	return (
@@ -47,11 +102,8 @@ const HasNoCard = ({ events }) => {
 	);
 };
 
-const HasCard = ({ data }) => {
+const HasCard = ({ data, events, paymentHistory }) => {
 	const { thumbnail, cardId, credit, dob, expired, name, school } = data;
-
-	//state config
-	const [showActivity, setShowActivity] = useState(true);
 
 	return (
 		<div className="has-card-boundary">
@@ -121,12 +173,62 @@ const HasCard = ({ data }) => {
 					></img>
 				</div>
 				<div className="interactive-btns">
-					<Button color="red">Update</Button>
-					<Button color="green">Extend</Button>
+					<Popup
+						modal
+						trigger={
+							<button
+								className="int-button"
+								style={{
+									backgroundColor: "#db2828",
+								}}
+							>
+								Update
+							</button>
+						}
+					></Popup>
+					<Popup
+						modal
+						trigger={
+							<button
+								className="int-button"
+								style={{
+									backgroundColor: "#3cba45",
+								}}
+							>
+								Extend
+							</button>
+						}
+					></Popup>
+					<Popup
+						modal
+						trigger={
+							<button
+								className="int-button"
+								style={{
+									backgroundColor: "#f9bd0a",
+								}}
+							>
+								Deposit
+							</button>
+						}
+					>
+						{(close) => (
+							<div
+								className="modal"
+								style={{ display: "flex", flexDirection: "column" }}
+							>
+								<button className="close" onClick={close}>
+									&times;
+								</button>
+
+								<Deposit events={events.deposit} close={close} />
+							</div>
+						)}
+					</Popup>
 				</div>
 			</div>
 			<div className="card-activity">
-				<TableExamplePagination />
+				<TableExamplePagination paymentHistory={paymentHistory} />
 			</div>
 		</div>
 	);
@@ -136,6 +238,8 @@ function Card() {
 	//state config
 	let [hasCard, setHasCard] = useState(false);
 	let [cardData, setCardData] = useState({});
+
+	let [paymentHistory, setPaymentHistory] = useState([]);
 
 	//events
 	const createCard = async (childData) => {
@@ -156,6 +260,50 @@ function Card() {
 		}
 	};
 
+	const getPaymentHistory = async () => {
+		let history = await axios({
+			method: "get",
+			url: `${BASE_URL}/payment/paymentHistory`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+		});
+
+		return history;
+	};
+
+	const deposit = async (deposit) => {
+		let response = await axios({
+			method: "put",
+			url: `${BASE_URL}/payment/deposit`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+			data: {
+				deposit: deposit,
+			},
+		});
+
+		if (response.data.statusCode === 200) {
+			response = await axios({
+				method: "get",
+				url: `${BASE_URL}/card/validate-card`,
+				params: {
+					token: sessionStorage.getItem("token"),
+				},
+			});
+
+			if (response.data.statusCode === 200) {
+				setCardData(response.data.data);
+
+				let history = await getPaymentHistory();
+				if (history.data.statusCode === 200) {
+					setPaymentHistory(history.data.data);
+				}
+			}
+		}
+	};
+
 	useEffect(async () => {
 		let response = await axios({
 			method: "get",
@@ -164,6 +312,12 @@ function Card() {
 				token: sessionStorage.getItem("token"),
 			},
 		});
+
+		let history = await getPaymentHistory();
+
+		if (history.data.statusCode === 200) {
+			setPaymentHistory(history.data.data);
+		}
 
 		if (response.data.statusCode === 200) {
 			setHasCard(!hasCard);
@@ -174,7 +328,11 @@ function Card() {
 	return (
 		<div className="Card">
 			{hasCard === true ? (
-				<HasCard data={cardData} />
+				<HasCard
+					data={cardData}
+					events={{ deposit: deposit }}
+					paymentHistory={paymentHistory}
+				/>
 			) : (
 				<HasNoCard events={{ createCard: createCard }} />
 			)}

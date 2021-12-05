@@ -19,9 +19,24 @@ let offset = 0;
 function Homepage() {
 	//state config
 	let [books, setBooks] = useState([]);
+	let [cartQty, setCartQty] = useState(0);
+	let [user, setUser] = useState([]);
 
 	useEffect(async () => {
+		setCartQty(Object.keys(localStorage).length);
 		paginate(null, currentPage);
+
+		let user = await axios({
+			method: "get",
+			url: `${BASE_URL}/user/get-user`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+		});
+
+		if (user.data.statusCode === 200) {
+			setUser(user.data.data);
+		}
 	}, []);
 
 	const toggleUserManage = () => {
@@ -52,6 +67,10 @@ function Homepage() {
 		setBooks(res.data.data.slice(offset, end));
 	};
 
+	const updateCartQty = () => {
+		setCartQty(Object.keys(localStorage).length);
+	};
+
 	return (
 		<div className="Homepage">
 			<div className="navbar">
@@ -62,16 +81,21 @@ function Homepage() {
 				</div>
 
 				<div className="users">
-					<Link to="/cart" style={{ color: "black" }}>
+					<Link to="/cart" style={{ color: "black" }} className="cart-item">
 						<Icon className="shopping cart" />
+						<span className="cart-qty">{cartQty}</span>
 					</Link>
 					<div className="personalize">
 						<img
 							onClick={toggleUserManage}
-							src="https://images.unsplash.com/photo-1569124589354-615739ae007b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+							src={
+								user.thumbnail
+									? user.thumbnail
+									: process.env.PUBLIC_URL + `/assets/user_default.png`
+							}
 						/>
 						<span className="greeting">
-							Hi, <span id="username">Lee Higgins</span>
+							Hi, <span id="username">{user.username}</span>
 						</span>
 
 						<ul className="user-manager">
@@ -117,29 +141,7 @@ function Homepage() {
 					<div className="genres-inner">
 						<ul className="criteria">
 							<li className="criteria-header">Popular Subjects</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Computer & technology</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-						</ul>
-
-						<ul className="criteria">
-							<li className="criteria-header">Popular Subjects</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-						</ul>
-
-						<ul className="criteria">
-							<li className="criteria-header">Popular Subjects</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
-							<li className="crit">Business & Money</li>
+							<li className="crit">Technology</li>
 						</ul>
 					</div>
 				</div>
@@ -153,7 +155,13 @@ function Homepage() {
 
 					<div className="books">
 						{books.map((book, index) => {
-							return <BookItem bookData={book} key={index} />;
+							return (
+								<BookItem
+									bookData={book}
+									key={index}
+									updateQty={updateCartQty}
+								/>
+							);
 						})}
 					</div>
 

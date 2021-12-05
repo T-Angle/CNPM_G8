@@ -1,9 +1,7 @@
 import React from "react";
 import { Icon } from "semantic-ui-react";
 
-export function BookItem(props) {
-	let { bookData } = props;
-
+export function BookItem({ bookData, updateQty }) {
 	const addToCart = (e) => {
 		const id =
 			e.currentTarget.parentNode.parentNode.parentNode.getAttribute("id");
@@ -20,8 +18,9 @@ export function BookItem(props) {
 		}
 
 		alert("Add item to cart");
-	};
 
+		updateQty();
+	};
 	return (
 		<div className="BookItem" id={bookData._id}>
 			<img

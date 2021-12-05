@@ -70,14 +70,11 @@
 	justify-content: flex-end;
 }
 
-.users .cart {
+.users .cart-item {
 	position: relative;
-	font-size: 18px;
-	cursor: pointer;
 }
 
-.users .cart::after {
-	content: "10";
+.users .cart-qty {
 	display: flex;
 	align-items: center;
 	justify-content: center;

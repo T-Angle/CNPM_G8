@@ -17,6 +17,7 @@ let totalPrice = 0;
 function Cart(props) {
 	//state config
 	let [books, setBooks] = useState([]);
+	let [user, setUser] = useState([]);
 
 	const toggleUserManage = () => {
 		let userManager = document.querySelector(".user-manager");
@@ -24,7 +25,7 @@ function Cart(props) {
 		userManager.classList.toggle("open");
 	};
 
-	useEffect(() => {
+	useEffect(async () => {
 		let temp = Object.keys(localStorage).map((key) => {
 			let parseObject = JSON.parse(localStorage.getItem(key));
 			totalPrice += parseInt(parseObject.price) * parseObject.qty;
@@ -32,6 +33,18 @@ function Cart(props) {
 		});
 
 		setBooks(temp);
+
+		let user = await axios({
+			method: "get",
+			url: `${BASE_URL}/user/get-user`,
+			params: {
+				token: sessionStorage.getItem("token"),
+			},
+		});
+
+		if (user.data.statusCode === 200) {
+			setUser(user.data.data);
+		}
 	}, []);
 
 	const payment = async () => {
@@ -88,10 +101,14 @@ function Cart(props) {
 					<div className="personalize">
 						<img
 							onClick={toggleUserManage}
-							src="https://images.unsplash.com/photo-1569124589354-615739ae007b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80"
+							src={
+								user.thumbnail
+									? user.thumbnail
+									: process.env.PUBLIC_URL + `/assets/user_default.png`
+							}
 						/>
 						<span className="greeting">
-							Hi, <span id="username">Lee Higgins</span>
+							Hi, <span id="username">{user.username}</span>
 						</span>
 
 						<ul className="user-manager">
