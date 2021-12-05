@@ -18,4 +18,4 @@
 
 - FE: ReactJS
 - BE: Nodejs, ExpressJS
-- Database: Mongodb
+- Database: Mongodb (Sử dụng Mongodb Atlas để lưu dữ liệu)
