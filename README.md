@@ -1,12 +1,10 @@
 # Đề tài Quản lý thư viện
 
-## Installation
+## Participants
 
-:octocat:
-
-```bash
-git clone https://github.com/T-Angle/CNPM_G8.git
-```
+- Leader: [Nguyễn Đức Khải - 19521658]
+- Member: [Trần Quang Minh - 19521856]
+- Member: [Cao Hoàng Khang - 19521660]
 
 ## Task management board:
 
@@ -20,15 +18,4 @@ git clone https://github.com/T-Angle/CNPM_G8.git
 
 - FE: ReactJS
 - BE: Nodejs, ExpressJS
-- Server: MS Azure
-- DB: MySQL
-
-## Contributors
-
-- Nguyễn Đức Khải (Lead)
-- Trần Quang Minh
-- Cao Hoàng Khang
-
-## License
-
-**MIT**
+- Database: Mongodb
