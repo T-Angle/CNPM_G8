@@ -21,6 +21,7 @@
     "moment": "^2.29.1",
     "mongodb": "^4.2.0",
     "mongoose": "^6.0.13",
+    "simple-random-number-generator": "^1.2.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {

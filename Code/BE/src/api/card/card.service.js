@@ -3,6 +3,7 @@ const User = require("../../models/user");
 
 const { httpStatus } = require("../../common/utils/http-status");
 const { serviceReturn } = require("../../common/services/service-return");
+const { numberGenerator } = require("../../common/utils/numberGenerator");
 
 const CardReturnFormat = (cardObj, userObj) => {
 	return {
@@ -49,7 +50,17 @@ module.exports = {
 				const date = new Date();
 				date.setFullYear(date.getFullYear() + 1);
 
+				let randNum = `${numberGenerator(
+					1000000000000000,
+					9999999999999999,
+					true
+				)}`;
+
+				let cardNumber = randNum.match(/\d{4}/g);
+				cardNumber = cardNumber.join(" ");
+
 				const card = new Card({
+					cardId: cardNumber,
 					userId: uid,
 					expired: date,
 				});
